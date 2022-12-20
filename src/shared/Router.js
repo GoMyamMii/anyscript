@@ -14,10 +14,12 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Header />
+
       <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="todo-detail/:id" element={<TodoDetail />} />
+        <Route path="" element={<Main />} />
+        <Route path="detail/:ipppp" element={<TodoDetail />} />
       </Routes>
+
       <Footer />
     </BrowserRouter>
   );

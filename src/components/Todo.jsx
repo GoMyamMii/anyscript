@@ -10,7 +10,7 @@ const Todo = ({ todo }) => {
     <div>
       <div>{todo.title}</div>
       <div>{todo.content}</div>
-      <Link to={`/todo-detail/${todo.id}`}>
+      <Link to={`/detail/${todo.id}`}>
         <span style={{ cursor: "pointer" }}>{todo.title} 로 이동</span>
       </Link>
       <button

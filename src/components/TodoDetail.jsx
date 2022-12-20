@@ -7,7 +7,9 @@ const TodoDetail = () => {
 
   const param = useParams();
 
-  const todo = todos.find((todo) => todo.id === param.id);
+  console.log(param);
+
+  const todo = todos.find((todo) => todo.id === param.ipppp);
 
   const navigate = useNavigate();
 
