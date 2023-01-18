@@ -3,21 +3,21 @@ import { v4 as uuidv4 } from "uuid";
 // action value 라는 녀석
 // action 의 type 을 정해주는 녀석 (항상 하드코딩 된 상수)
 
-const DELETE_TODO = "DELETE_TODO";
-const ADD_TODO = "ADD_TODO";
-const TOGGLE_TODO = "TOGGLE_TODO";
+const DELETE_TODO = "DELETE_TODO" as const;
+const ADD_TODO = "ADD_TODO" as const;
+const TOGGLE_TODO = "TOGGLE_TODO" as const;
 
 // action creator 라는 녀석
 // action 객체를 만들어주는 녀석
 
-export const deleteTodo = (id) => {
+export const deleteTodo = (id: string) => {
   return {
     type: DELETE_TODO,
     id,
   };
 };
 
-export const addTodo = (titleDOM, contentDOM) => {
+export const addTodo = (titleDOM: any, contentDOM: any) => {
   return {
     type: ADD_TODO,
     titleDOM,
@@ -25,14 +25,28 @@ export const addTodo = (titleDOM, contentDOM) => {
   };
 };
 
-export const toggleTodo = (id) => {
+export const toggleTodo = (id: string) => {
   return {
     type: TOGGLE_TODO,
     id,
   };
 };
 
+type TodosAction =
+  | ReturnType<typeof addTodo>
+  | ReturnType<typeof toggleTodo>
+  | ReturnType<typeof deleteTodo>;
+
 ////////////////////////////////////////
+
+// 상태를 위한 타입 선언
+export type Todo = {
+  id: string;
+  title: string;
+  content: string;
+  isDone: boolean;
+};
+type TodosState = Todo[];
 
 const initialState = [
   {
@@ -59,7 +73,10 @@ const initialState = [
 // reducer 는 한 파일에 한 녀석만 정의하고, export default 로 보내는게 국룰
 // reducer 의 파라미터에는 state 와 action 을 받는다
 // state 가 안들어오면 initialState 를 넣는다 라는 뜻. (state=initialState)
-const todoList = (state = initialState, action) => {
+const todoList = (
+  state: TodosState = initialState,
+  action: TodosAction
+): TodosState => {
   // 분기 만들어주기
   switch (action.type) {
     case DELETE_TODO:
@@ -67,6 +84,8 @@ const todoList = (state = initialState, action) => {
       const filteredTodos = snewTodos.filter((state) => state.id !== action.id);
       console.log(filteredTodos);
       return [...filteredTodos];
+
+    //////////////////////////////////////////////////////////////////////////////////////
 
     case ADD_TODO:
       if (!action.titleDOM.value && !action.contentDOM.value) {
@@ -93,6 +112,8 @@ const todoList = (state = initialState, action) => {
       action.titleDOM.value = "";
       action.contentDOM.value = "";
       return [...state, newTodo];
+
+    //////////////////////////////////////////////////////////////////////////////////////
 
     case TOGGLE_TODO:
       const newTodos = [...state];

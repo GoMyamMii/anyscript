@@ -3,11 +3,11 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../redux/modules/todoList";
 
-const TodoInput = () => {
+const TodoInput = (): React.ReactElement => {
   const dispatch = useDispatch();
 
-  const titleRef = useRef();
-  const contentRef = useRef();
+  const titleRef = useRef<HTMLInputElement>(null);
+  const contentRef = useRef<HTMLInputElement>(null);
 
   return (
     <TodoInputContainer>

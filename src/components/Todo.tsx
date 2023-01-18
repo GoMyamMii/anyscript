@@ -3,7 +3,7 @@ import { deleteTodo, toggleTodo } from "../redux/modules/todoList";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-const Todo = ({ todo }) => {
+const Todo = ({ todo }: any) => {
   const dispatch = useDispatch(); // hook 을 안에서 쓸 수 있게끔 우회시켜주는 녀석
 
   return (

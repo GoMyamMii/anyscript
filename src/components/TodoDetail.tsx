@@ -1,9 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { RootState } from "../redux/config/configStore";
 
 const TodoDetail = () => {
-  const todos = useSelector((state) => state.todoList);
+  const todos = useSelector((state: RootState) => state.todoList);
 
   const param = useParams();
 
@@ -15,8 +16,8 @@ const TodoDetail = () => {
 
   return (
     <div>
-      <div>{todo.title}</div>
-      <div>{todo.content}</div>
+      <div>{todo?.title}</div>
+      <div>{todo?.content}</div>
       <button
         onClick={() => {
           navigate("/");

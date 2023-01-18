@@ -3,9 +3,10 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 
 import Todo from "./Todo";
+import { RootState } from "../redux/config/configStore";
 
 const TodoList = () => {
-  const todos = useSelector((state) => state.todoList);
+  const todos = useSelector((state: RootState) => state.todoList);
 
   const todoItems = todos.filter((todo) => !todo.isDone);
   const doneItems = todos.filter((todo) => todo.isDone);
