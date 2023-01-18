@@ -15,7 +15,9 @@ const TodoInput = (): React.ReactElement => {
       <input ref={contentRef} placeholder="Content" />
       <button
         onClick={() => {
-          dispatch(addTodo(titleRef.current, contentRef.current));
+          if (titleRef.current && contentRef.current) {
+            return dispatch(addTodo(titleRef.current, contentRef.current));
+          }
         }}
       >
         Add

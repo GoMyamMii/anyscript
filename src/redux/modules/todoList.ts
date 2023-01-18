@@ -17,7 +17,10 @@ export const deleteTodo = (id: string) => {
   };
 };
 
-export const addTodo = (titleDOM: any, contentDOM: any) => {
+export const addTodo = (
+  titleDOM: HTMLInputElement,
+  contentDOM: HTMLInputElement
+) => {
   return {
     type: ADD_TODO,
     titleDOM,
